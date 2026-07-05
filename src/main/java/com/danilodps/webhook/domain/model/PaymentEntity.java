@@ -7,29 +7,36 @@ import java.util.Objects;
 public class PaymentEntity {
 
     private String paymentId;
-    private LocalDateTime paymentDate;
     private BigDecimal paymentAmount;
     private String paymentStatus;
     private String webhookId;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+
+    public PaymentEntity() {}
 
     public PaymentEntity(String paymentId,
-                         LocalDateTime paymentDate,
                          BigDecimal paymentAmount,
                          String paymentStatus,
-                         String webhookId) {
+                         String webhookId,
+                         LocalDateTime createdDate,
+                         LocalDateTime updatedDate) {
         this.paymentId = paymentId;
-        this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
         this.paymentStatus = paymentStatus;
         this.webhookId = webhookId;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
-    public LocalDateTime getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(LocalDateTime paymentDate) {
-        this.paymentDate = paymentDate;
+    public PaymentEntity(String paymentId,
+                         BigDecimal paymentAmount,
+                         String paymentStatus,
+                         LocalDateTime createdDate) {
+        this.paymentId = paymentId;
+        this.paymentAmount = paymentAmount;
+        this.paymentStatus = paymentStatus;
+        this.createdDate = createdDate;
     }
 
     public String getPaymentId() {
@@ -64,6 +71,22 @@ public class PaymentEntity {
         this.webhookId = webhookId;
     }
 
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof PaymentEntity that)) return false;
@@ -73,17 +96,6 @@ public class PaymentEntity {
     @Override
     public int hashCode() {
         return Objects.hashCode(paymentId);
-    }
-
-    @Override
-    public String toString() {
-        return "PaymentEntity{" +
-                "paymentId='" + paymentId + '\'' +
-                ", paymentDate=" + paymentDate +
-                ", paymentAmount=" + paymentAmount +
-                ", paymentStatus='" + paymentStatus + '\'' +
-                ", webhookId='" + webhookId + '\'' +
-                '}';
     }
 
 }

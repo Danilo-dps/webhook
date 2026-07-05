@@ -14,7 +14,8 @@ public class PaymentEntity2PaymentResponse {
                 Optional.ofNullable(paymentEntity.getWebhookId()).orElse(null),
                 paymentEntity.getPaymentAmount(),
                 paymentEntity.getPaymentStatus(),
-                paymentEntity.getPaymentDate());
+                paymentEntity.getCreatedDate(),
+                Optional.ofNullable(paymentEntity.getUpdatedDate()).orElse(null));
     }
 
 }

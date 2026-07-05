@@ -12,9 +12,11 @@ public class PaymentEntity2JpaPaymentEntity {
     public static JpaPaymentEntity convert(PaymentEntity paymentEntity){
         return new JpaPaymentEntity(
                 paymentEntity.getPaymentId(),
-                paymentEntity.getPaymentDate(),
                 paymentEntity.getPaymentAmount(),
                 paymentEntity.getPaymentStatus(),
-                Optional.ofNullable(paymentEntity.getWebhookId()).orElse(null));
+                Optional.ofNullable(paymentEntity.getWebhookId()).orElse(null),
+                paymentEntity.getCreatedDate(),
+                Optional.ofNullable(paymentEntity.getUpdatedDate()).orElse(null));
     }
+
 }

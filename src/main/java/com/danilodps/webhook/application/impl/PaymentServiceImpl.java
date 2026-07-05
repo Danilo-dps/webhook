@@ -29,11 +29,11 @@ public class PaymentServiceImpl implements PaymentUseCase {
         if(nonNull(paymentRequest)){
             paymentEntity = new PaymentEntity(
                     UUID.randomUUID().toString(),
-                    LocalDateTime.now(ZoneId.systemDefault()),
                     paymentRequest.amount(),
                     PaymentEnum.EM_ANDAMENTO.getDescription(),
-                    null);
+                    LocalDateTime.now(ZoneId.systemDefault()));
         }
+
         paymentEntity = paymentEntityRepository.save(paymentEntity);
 
         return PaymentEntity2PaymentResponse.convert(paymentEntity);

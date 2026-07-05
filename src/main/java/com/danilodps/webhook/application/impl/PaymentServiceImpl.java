@@ -1,6 +1,7 @@
 package com.danilodps.webhook.application.impl;
 
 import com.danilodps.webhook.adapters.inbound.controller.request.PaymentRequest;
+import com.danilodps.webhook.adapters.inbound.controller.request.PaymentUpdateRequest;
 import com.danilodps.webhook.adapters.inbound.controller.response.PaymentResponse;
 import com.danilodps.webhook.application.usecases.PaymentUseCase;
 import com.danilodps.webhook.domain.mappers.core.PaymentEntity2PaymentResponse;
@@ -44,6 +45,12 @@ public class PaymentServiceImpl implements PaymentUseCase {
         return this.paymentEntityRepository.findByPaymentId(paymentId)
                 .map(PaymentEntity2PaymentResponse::convert)
                 .orElse(null);
+    }
+
+    @Override
+    public PaymentResponse update(PaymentUpdateRequest paymentUpdateRequest){
+        Optional<PaymentEntity> optPaymentEntity = this.paymentEntityRepository.update(paymentUpdateRequest);
+        return optPaymentEntity.map(PaymentEntity2PaymentResponse::convert).orElseThrow(RuntimeException::new);
     }
 
 }
